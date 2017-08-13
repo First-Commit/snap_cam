@@ -2,24 +2,20 @@ cmake_minimum_required(VERSION 2.8)
 
 project(cameraTest)
 
-#find_package(PkgConfig REQUIRED)
-find_package(OpenCV REQUIRED)
-
-
 include_directories(
-  ${OpenCV_INCLUDE_DIRS}
-  /home/linaro/dependencies/camera/libcamera/inc
-  /home/linaro/dependencies/camera/libcamera/src
-  /home/linaro/dependencies/libjpeg-turbo-1.4.2
-  )
+  src
+  inc
+  /home/linaro/libjpeg-turbo
+)
 
-add_executable(cam_test camera_test.cpp)
+add_executable(cam_test test/camera_test.cpp)
 
 LINK_DIRECTORIES(
   /usr/lib
+  /home/linaro/libjpeg-turbo/build/.libs
   )
 
-add_library(turbojpeg SHARED IMPORTED)
-set_property(TARGET turbojpeg PROPERTY IMPORTED_LOCATION "/home/linaro/dependencies/libjpeg-turbo/.libs/libturbojpeg.so")
+ADD_LIBRARY(turbojpeg SHARED IMPORTED)
+set_property(TARGET turbojpeg PROPERTY IMPORTED_LOCATION "/home/linaro/libjpeg-turbo/build/.libs/libturbojpeg.so")
 
-TARGET_LINK_LIBRARIES(cam_test camera turbojpeg ${OpenCV_LIBS})
+TARGET_LINK_LIBRARIES(cam_test camera turbojpeg)

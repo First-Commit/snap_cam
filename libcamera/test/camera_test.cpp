@@ -416,7 +416,7 @@ int CameraTest::compressJpegAndSave(ICameraFrame *frame, char* name)
     strides[1] = 0;
     strides[2] = 0;
 
-    tjCompressFromYUVPlanes(jpegCompressor, planes, w, strides, h, TJSAMP_420,
+    tjCompressFromYUVPlanes(jpegCompressor, (const unsigned char**)planes, w, strides, h, TJSAMP_420,
                             &dest, (long unsigned int *)&jpegSize, jpegQuality,
                             TJFLAG_FASTDCT);
 
