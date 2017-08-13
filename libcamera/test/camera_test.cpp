@@ -815,11 +815,11 @@ int CameraTest::setParameters()
     params_.setVideoSize(vSize_);
 
     /* Find index and set FPS  */
-    rc = setFPSindex(config_.fps, pFpsIdx, vFpsIdx);
-    if ( rc == -1)
-    {
-        return rc;
-    }
+    // rc = setFPSindex(config_.fps, pFpsIdx, vFpsIdx);
+    //if ( rc == -1)
+    //{
+    //    return rc;
+    //}
     printf("setting preview fps range: %d, %d ( idx = %d ) \n",
     caps_.previewFpsRanges[pFpsIdx].min,
     caps_.previewFpsRanges[pFpsIdx].max, pFpsIdx);
